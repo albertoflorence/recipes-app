@@ -79,7 +79,7 @@ function App() {
         path="/favorite-recipes"
         render={ () => (
           <Layout
-            pageTitle="Favorite Recipes"
+            pageTitle="Favorites"
             pageIcon="favorite"
             filter="all"
           >

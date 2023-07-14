@@ -1,0 +1,24 @@
+.content-card-info {
+  align-items: center;
+  border: 0.518px solid rgb(177, 177, 177);
+  border-radius: 5px;
+  display: flex;
+  flex: 1;
+  gap: 30px;
+  margin: 10px;
+}
+
+.img-food-favorite {
+  width: 30%;
+}
+
+.info-food {
+  text-align: start;
+  width: 100%;
+}
+
+.options-food {
+  align-items: center;
+  display: flex;
+  gap: 20px;
+}
