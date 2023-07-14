@@ -36,6 +36,12 @@
   width: 100%;
 }
 
+.header-search-content label > input {
+  height: 14px;
+  width: 14px;
+}
+
+
 .header-search input:focus {
   box-shadow: 0 0 0 2px rgba(65, 25, 127, 0.25);
 }
@@ -51,12 +57,14 @@
   margin: 18px 0;
 }
 
+
 .header-search-content label {
   display: flex;
   font-size: 9px;
   gap: 4px;
   white-space: nowrap;
 }
+
 
 .header-search-content .btn {
   font-size: 12px;

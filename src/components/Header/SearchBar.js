@@ -55,10 +55,9 @@ function SearchBar() {
       />
       <div className="header-search-content">
         <div>
-          <label htmlFor="ingredient-search-radio">
+          <label>
             <input
               data-testid="ingredient-search-radio"
-              id="ingredient-search-radio"
               type="radio"
               name="typeInput"
               value="ingredient"
@@ -66,10 +65,9 @@ function SearchBar() {
             />
             Ingredient
           </label>
-          <label htmlFor="name-search-radio">
+          <label>
             <input
               data-testid="name-search-radio"
-              id="name-search-radio"
               type="radio"
               name="typeInput"
               value="name"
@@ -77,10 +75,9 @@ function SearchBar() {
             />
             Name
           </label>
-          <label htmlFor="first-letter-search-radio">
+          <label>
             <input
               data-testid="first-letter-search-radio"
-              id="first-letter-search-radio"
               type="radio"
               name="typeInput"
               value="firstLetter"
