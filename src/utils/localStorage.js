@@ -1,3 +1,11 @@
+const getLocalStorage = {
+  setItem: (key, value) => localStorage.setItem(key, JSON.stringify(value)),
+  getItem: (key) => {
+    const result = localStorage.getItem(key);
+    return result && JSON.parse(result);
+  },
+};
+
 const mapProperties = (recipe) => ({
   alcoholicOrNot: recipe.alcoholicOrNot,
   category: recipe.category,
@@ -7,14 +15,6 @@ const mapProperties = (recipe) => ({
   nationality: recipe.nationality,
   type: recipe.type.replace('s', ''),
 });
-
-const getLocalStorage = {
-  setItem: (key, value) => localStorage.setItem(key, JSON.stringify(value)),
-  getItem: (key) => {
-    const result = localStorage.getItem(key);
-    return result && JSON.parse(result);
-  },
-};
 
 export const favoriteRecipe = (recipe) => {
   const recipes = getLocalStorage.getItem('favoriteRecipes') || [];
@@ -30,6 +30,14 @@ export const isRecipeFavorite = (id) => {
   return recipes.some((recipe) => recipe.id === id);
 };
 
+export const removeRecipeFavorite = (id) => {
+  const recipes = getLocalStorage.getItem('favoriteRecipes') || [];
+  const index = recipes.findIndex((recipe) => recipe.id === id);
+  const newRecipes = recipes.splice(index, 1);
+  getLocalStorage.setItem('favoriteRecipes', newRecipes);
+  return newRecipes;
+};
+
 export const saveRecipe = (recipe) => {
   const recipes = getLocalStorage.getItem('doneRecipes') || [];
   const newRecipes = recipes.filter((r) => r.id !== recipe.id);
@@ -40,5 +48,7 @@ export const saveRecipe = (recipe) => {
   });
   getLocalStorage.setItem('doneRecipes', newRecipes);
 };
+
+export const getDoneRecipes = () => getLocalStorage.getItem('doneRecipes') || [];
 
 export default getLocalStorage;

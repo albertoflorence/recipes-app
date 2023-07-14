@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { fetchRecipeById } from '../../services';
-import './RecipeProgress.css';
+import './RecipeInProgress.css';
 import getLocalStorage, { saveRecipe } from '../../utils/localStorage';
 
-import RecipeProgressHeader from './RecipeProgressHeader';
+import RecipeInProgressHeader from './RecipeInProgressHeader';
 
 const getIngredients = (recipe) => Object.entries(recipe)
   .filter(([key, value]) => key.includes('Ingredient') && value)
@@ -38,12 +38,11 @@ const mapProperties = (recipe) => {
   };
 };
 
-export default function RecipeProgress() {
+export default function RecipeInProgress() {
   const location = useLocation();
   const [recipe, setRecipe] = useState({});
   const [ingredientsDone, setIngredientsDone] = useState([]);
   const history = useHistory();
-
   useEffect(() => {
     const [, recipeType, recipeId] = location.pathname.split('/');
     const fetchRecipe = async () => {
@@ -81,13 +80,13 @@ export default function RecipeProgress() {
     && ingredientsDone.every((ingredient) => ingredient);
   return (
     <div>
-      <RecipeProgressHeader recipe={ recipe } />
+      <RecipeInProgressHeader recipe={ recipe } />
       <div className="progress-content">
         <div className="progress-ingredients">
           <h3>Ingredients</h3>
-          <ul className="progress-ingredients">
+          <ul>
             {ingredients.map((ingredient, index) => (
-              <li key={ index } data-testid={ `${index}-ingredient-step` } className="">
+              <li key={ index } data-testid={ `${index}-ingredient-step` }>
                 <label>
                   <input
                     type="checkbox"

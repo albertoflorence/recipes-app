@@ -1,0 +1,23 @@
+.footerFixed {
+  align-items: center;
+  background: #41197f;
+  bottom: 0;
+  box-shadow: 0 -2px 10px 0 rgba(0, 0, 0, 0.25);
+  display: flex;
+  height: 52px;
+  justify-content: space-between;
+  margin-top: 16px;
+  padding: 0 36px;
+  position: sticky;
+  width: 100%;
+}
+
+.footerCypress {
+  bottom: 0;
+  position: fixed;
+}
+
+.footerFixed img:last-child {
+  height: 1px;
+  width: 1px;
+}

@@ -31,6 +31,10 @@ function Favorites() {
               category={ result.category }
               nationality={ result.nationality }
               alcoholicOrNot={ result.alcoholicOrNot }
+              type={ result.type }
+              id={ result.id }
+              recipe={ result }
+              setResultsFilter={ setResultsFilter }
             />
           ))
         }

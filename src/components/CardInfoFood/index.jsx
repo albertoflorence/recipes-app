@@ -2,10 +2,21 @@ import './style.css';
 
 import PropTypes from 'prop-types';
 
-import iconShare from '../../images/share.png';
-import iconFavoriteFull from '../../images/favoriteFull.png';
+import Share from '../Share';
+import Favorite from '../Favorite';
 
-function CardInfoFood({ photo, index, name, category, nationality, alcoholicOrNot }) {
+function CardInfoFood({
+  photo,
+  index,
+  name,
+  category,
+  nationality,
+  alcoholicOrNot,
+  type,
+  recipe,
+  id,
+  setResultsFilter,
+}) {
   return (
     <div className="content-card-info">
       <img
@@ -33,20 +44,17 @@ function CardInfoFood({ photo, index, name, category, nationality, alcoholicOrNo
         </p>
 
         <div className="options-food">
-          <button>
-            <img
-              data-testid={ `${index}-horizontal-share-btn` }
-              src={ iconShare }
-              alt=""
-              draggable="false"
-            />
-          </button>
+          <Share
+            id={ id }
+            type={ type }
+            data-testid={ `${index}-horizontal-share-btn` }
+          />
 
-          <img
+          <Favorite
+            recipe={ recipe }
             data-testid={ `${index}-horizontal-favorite-btn` }
-            src={ iconFavoriteFull }
-            alt=""
-            draggable="false"
+            id={ id }
+            setResultsFilter={ setResultsFilter }
           />
         </div>
       </div>
@@ -61,6 +69,16 @@ CardInfoFood.propTypes = {
   category: PropTypes.string.isRequired,
   nationality: PropTypes.string.isRequired,
   alcoholicOrNot: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  recipe: PropTypes.shape({
+    image: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+  }).isRequired,
+  setResultsFilter: PropTypes.func.isRequired,
 };
 
 export default CardInfoFood;
