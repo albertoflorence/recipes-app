@@ -86,7 +86,11 @@ export default function RecipeInProgress() {
           <h3>Ingredients</h3>
           <ul>
             {ingredients.map((ingredient, index) => (
-              <li key={ index } data-testid={ `${index}-ingredient-step` }>
+              <li
+                key={ index }
+                data-testid={ `${index}-ingredient-step` }
+                className={ ingredientsDone[index] ? 'lineThrough' : '' }
+              >
                 <label>
                   <input
                     type="checkbox"

@@ -91,7 +91,7 @@
   list-style: none;
 }
 
-.progress-ingredients li:has( .ingredient-input:checked ) {
+.lineThrough {
   color: #ccc;
   text-decoration: line-through solid black;
 }
