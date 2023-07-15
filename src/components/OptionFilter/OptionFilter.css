@@ -1,5 +1,4 @@
 .option-filter {
-  color: #797d86;
   display: flex;
   font-size: 9px;
   font-weight: 300;
@@ -11,6 +10,7 @@
 
 .option-filter > button {
   align-items: center;
+  color: #797d86;
   display: flex;
   flex-direction: column;
   gap: 4px;

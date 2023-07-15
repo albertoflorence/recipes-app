@@ -20,13 +20,14 @@ function CardInfoFood({ index, recipe, onChange }) {
         />
       </Link>
       <div className="info-food">
-        <h5 data-testid={ `${index}-horizontal-top-text` }>
-          {` ${alcoholicOrNot ? `${alcoholicOrNot}` : `${nationality} - ${category} `}`}
-        </h5>
-        <Link to={ `/${type}s/${id}` } data-testid={ `${index}-horizontal-name` }>
-          {name}
-        </Link>
-
+        <div className="info-food-title">
+          <Link to={ `/${type}s/${id}` } data-testid={ `${index}-horizontal-name` }>
+            <h3>{name}</h3>
+          </Link>
+          <span data-testid={ `${index}-horizontal-top-text` }>
+            {` ${alcoholicOrNot ? `${alcoholicOrNot}` : `${nationality} - ${category} `}`}
+          </span>
+        </div>
         <div className="options-food">
           <Share
             id={ id }
