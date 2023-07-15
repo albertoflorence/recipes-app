@@ -12,6 +12,10 @@ function Favorites() {
     setFavorites(localFavorites || []);
   }, []);
 
+  useEffect(() => {
+    setResultsFilter(favorites);
+  }, [favorites]);
+
   return (
     <div className="container-favorites">
       <OptionFilter
@@ -34,6 +38,7 @@ function Favorites() {
               type={ result.type }
               id={ result.id }
               recipe={ result }
+              setFavorites={ setFavorites }
               setResultsFilter={ setResultsFilter }
             />
           ))

@@ -16,6 +16,7 @@ function CardInfoFood({
   recipe,
   id,
   setResultsFilter,
+  setFavorites,
 }) {
   return (
     <div className="content-card-info">
@@ -55,6 +56,7 @@ function CardInfoFood({
             data-testid={ `${index}-horizontal-favorite-btn` }
             id={ id }
             setResultsFilter={ setResultsFilter }
+            setFavorites={ setFavorites }
           />
         </div>
       </div>
@@ -79,6 +81,7 @@ CardInfoFood.propTypes = {
     type: PropTypes.string.isRequired,
   }).isRequired,
   setResultsFilter: PropTypes.func.isRequired,
+  setFavorites: PropTypes.func.isRequired,
 };
 
 export default CardInfoFood;

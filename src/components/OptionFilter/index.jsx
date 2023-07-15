@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import iconFastFood from '../../images/icon-fast-food.png';
 import iconMeal from '../../images/icon-meal.png';
 import iconDrink from '../../images/icon-drink.png';
-// import filterFavorites from '../../utils/filterFavorites';
+import filterFavorites from '../../utils/filterFavorites';
 
 function OptionFilter({
   favorites,
@@ -17,8 +17,8 @@ function OptionFilter({
   }, [favorites, setResultsFilter]);
 
   const filterByAll = (type) => {
-    // const newFilter = filterFavorites(favorites, type);
-    // setResultsFilter(newFilter);
+    const newFilter = filterFavorites(favorites, type);
+    setResultsFilter(newFilter);
     console.log(type);
   };
 
