@@ -1,5 +1,6 @@
 import './style.css';
 
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import Share from '../Share';
@@ -20,13 +21,18 @@ function CardInfoFood({
 }) {
   return (
     <div className="content-card-info">
-      <img
-        src={ photo }
-        alt=""
-        data-testid={ `${index}-horizontal-image` }
-        className="img-food-favorite"
-        draggable="false"
-      />
+      <Link
+        to={ `/${type}s/${id}` }
+      >
+        <img
+          src={ photo }
+          alt=""
+          data-testid={ `${index}-horizontal-image` }
+          className="img-food-favorite"
+          draggable="false"
+        />
+
+      </Link>
       <div className="info-food">
         <h5
           data-testid={
@@ -35,14 +41,15 @@ function CardInfoFood({
         >
           {` ${alcoholicOrNot ? `${alcoholicOrNot}` : `${nationality} - ${category} `}`}
         </h5>
-
-        <p
-          data-testid={
-            `${index}-horizontal-name`
-          }
-        >
-          { name }
-        </p>
+        <Link to={ `/${type}s/${id}` }>
+          <p
+            data-testid={
+              `${index}-horizontal-name`
+            }
+          >
+            { name }
+          </p>
+        </Link>
 
         <div className="options-food">
           <Share
