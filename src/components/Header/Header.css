@@ -57,14 +57,12 @@
   margin: 18px 0;
 }
 
-
 .header-search-content label {
   display: flex;
   font-size: 9px;
   gap: 4px;
   white-space: nowrap;
 }
-
 
 .header-search-content .btn {
   font-size: 12px;
@@ -83,26 +81,4 @@
   letter-spacing: 2.1px;
   margin-top: 4px;
   text-transform: uppercase;
-}
-
-.header-filters {
-  color: #797d86;
-  display: flex;
-  font-size: 9px;
-  font-weight: 300;
-  justify-content: space-evenly;
-  margin: 0 auto 16px;
-  max-width: 330px;
-  text-align: center;
-}
-
-.header-filters > button {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.header-filters span {
-  width: 46px;
 }

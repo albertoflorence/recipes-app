@@ -1,16 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import Icon from '../../components/Icon';
 import { getDoneRecipes } from '../../utils/localStorage';
 import './DoneRecipes.css';
 import Share from '../../components/Share';
-
-const filters = [
-  { name: 'All', icon: 'fastfood', testid: 'filter-by-all-btn', type: 'all' },
-  { name: 'Food', icon: 'meal', testid: 'filter-by-meal-btn', type: 'meal' },
-  { name: 'Drinks', icon: 'drink', testid: 'filter-by-drink-btn', type: 'drink' },
-];
+import OptionFilter from '../../components/OptionFilter';
 
 function DoneRecipes() {
   const [recipes, setRecipes] = useState([]);
@@ -25,14 +19,7 @@ function DoneRecipes() {
 
   return (
     <div>
-      <div className="header-filters">
-        {filters.map(({ name, icon, testid, type }) => (
-          <button key={ name } data-testid={ testid } onClick={ () => setFilter(type) }>
-            <Icon name={ icon } large border />
-            <span>{name}</span>
-          </button>
-        ))}
-      </div>
+      <OptionFilter onChange={ setFilter } />
       <div className="done-recipes">
         {filteredRecipes.map(
           (

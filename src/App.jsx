@@ -34,7 +34,6 @@ function App() {
             search
             footer
             pageTitle="Meals"
-            filter="meal"
             pageIcon="meal"
           >
             <Recipes recipeType="meals" />
@@ -56,7 +55,6 @@ function App() {
             search
             pageTitle="Drinks"
             footer
-            filter="drink"
             pageIcon="drink"
           >
             <Recipes recipeType="drinks" />
@@ -69,7 +67,6 @@ function App() {
           <Layout
             pageTitle="Done Recipes"
             pageIcon="done"
-            filter="all"
           >
             <DoneRecipes />
           </Layout>
@@ -79,9 +76,8 @@ function App() {
         path="/favorite-recipes"
         render={ () => (
           <Layout
-            pageTitle="Favorites"
+            pageTitle="Favorite Recipes"
             pageIcon="favorite"
-            filter="all"
           >
             <Favorites />
           </Layout>

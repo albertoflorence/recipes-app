@@ -7,25 +7,18 @@ import Share from '../Share';
 import Favorite from '../Favorite';
 
 function CardInfoFood({
-  photo,
   index,
-  name,
-  category,
-  nationality,
-  alcoholicOrNot,
-  type,
   recipe,
-  id,
-  setResultsFilter,
-  setFavorites,
+  onChange,
 }) {
+  const { image, name, category, nationality, type, id, alcoholicOrNot } = recipe;
   return (
     <div className="content-card-info">
       <Link
         to={ `/${type}s/${id}` }
       >
         <img
-          src={ photo }
+          src={ image }
           alt=""
           data-testid={ `${index}-horizontal-image` }
           className="img-food-favorite"
@@ -62,8 +55,7 @@ function CardInfoFood({
             recipe={ recipe }
             data-testid={ `${index}-horizontal-favorite-btn` }
             id={ id }
-            setResultsFilter={ setResultsFilter }
-            setFavorites={ setFavorites }
+            onChange={ onChange }
           />
         </div>
       </div>
@@ -72,23 +64,17 @@ function CardInfoFood({
 }
 
 CardInfoFood.propTypes = {
-  photo: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
-  nationality: PropTypes.string.isRequired,
-  alcoholicOrNot: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
   recipe: PropTypes.shape({
     image: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
+    nationality: PropTypes.string.isRequired,
+    alcoholicOrNot: PropTypes.string.isRequired,
   }).isRequired,
-  setResultsFilter: PropTypes.func.isRequired,
-  setFavorites: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default CardInfoFood;

@@ -27,7 +27,7 @@ function Header({ search = false, pageTitle, pageIcon }) {
               <img
                 data-testid="search-top-btn"
                 src={ searchIcon }
-                alt="ícone de profile"
+                alt="ícone de search"
               />
             </button>
           )}

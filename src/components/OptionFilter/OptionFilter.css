@@ -1,0 +1,21 @@
+.option-filter {
+  color: #797d86;
+  display: flex;
+  font-size: 9px;
+  font-weight: 300;
+  justify-content: space-evenly;
+  margin: 0 auto 16px;
+  max-width: 330px;
+  text-align: center;
+}
+
+.option-filter > button {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.option-filter span {
+  width: 46px;
+}

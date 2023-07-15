@@ -6,7 +6,6 @@ function Layout({
   children,
   search = false,
   pageTitle,
-  filter = '',
   pageIcon = '',
   footer = false,
 }) {
@@ -15,7 +14,6 @@ function Layout({
       <Header
         search={ search }
         pageTitle={ pageTitle }
-        filter={ filter }
         pageIcon={ pageIcon }
       />
       <main>
@@ -33,6 +31,5 @@ Layout.propTypes = {
   search: PropTypes.bool,
   pageTitle: PropTypes.string.isRequired,
   footer: PropTypes.bool,
-  filter: PropTypes.oneOf(['meal', 'drink', 'all']),
   pageIcon: PropTypes.oneOf(['meal', 'drink', 'done', 'favorite', 'profile']),
 };

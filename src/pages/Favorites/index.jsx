@@ -1,28 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import OptionFilter from '../../components/OptionFilter';
 import getLocalStorage from '../../utils/localStorage';
 import CardInfoFood from '../../components/CardInfoFood';
 
 function Favorites() {
-  const [favorites, setFavorites] = useState([]);
-  const [resultsFilter, setResultsFilter] = useState([]);
+  const [filter, setFilter] = useState('all');
+  const [, forceUpdate] = useState(false);
 
-  useEffect(() => {
-    const localFavorites = getLocalStorage.getItem('favoriteRecipes');
-    setFavorites(localFavorites || []);
-  }, []);
-
-  useEffect(() => {
-    setResultsFilter(favorites);
-  }, [favorites]);
+  const favorites = getLocalStorage.getItem('favoriteRecipes') || [];
+  const resultsFilter = favorites.filter(({ type }) => (filter === 'all' ? true
+    : type === filter));
 
   return (
     <div className="container-favorites">
-      <OptionFilter
-        favorites={ favorites }
-        setResultsFilter={ setResultsFilter }
-        resultsFilter={ resultsFilter }
-      />
+      <OptionFilter onChange={ setFilter } />
 
       <section>
         {
@@ -30,16 +21,8 @@ function Favorites() {
             <CardInfoFood
               key={ result.id }
               index={ index }
-              photo={ result.image }
-              name={ result.name }
-              category={ result.category }
-              nationality={ result.nationality }
-              alcoholicOrNot={ result.alcoholicOrNot }
-              type={ result.type }
-              id={ result.id }
               recipe={ result }
-              setFavorites={ setFavorites }
-              setResultsFilter={ setResultsFilter }
+              onChange={ () => forceUpdate((s) => !s) }
             />
           ))
         }
