@@ -30,14 +30,6 @@ export const isRecipeFavorite = (id) => {
   return recipes.some((recipe) => recipe.id === id);
 };
 
-export const removeRecipeFavorite = (id) => {
-  const recipes = getLocalStorage.getItem('favoriteRecipes') || [];
-  const index = recipes.findIndex((recipe) => recipe.id === id);
-  const newRecipes = recipes.splice(index, 1);
-  getLocalStorage.setItem('favoriteRecipes', newRecipes);
-  return newRecipes;
-};
-
 export const saveRecipe = (recipe) => {
   const recipes = getLocalStorage.getItem('doneRecipes') || [];
   const newRecipes = recipes.filter((r) => r.id !== recipe.id);

@@ -6,17 +6,11 @@ import PropTypes from 'prop-types';
 import Share from '../Share';
 import Favorite from '../Favorite';
 
-function CardInfoFood({
-  index,
-  recipe,
-  onChange,
-}) {
+function CardInfoFood({ index, recipe, onChange }) {
   const { image, name, category, nationality, type, id, alcoholicOrNot } = recipe;
   return (
     <div className="content-card-info">
-      <Link
-        to={ `/${type}s/${id}` }
-      >
+      <Link to={ `/${type}s/${id}` }>
         <img
           src={ image }
           alt=""
@@ -24,24 +18,13 @@ function CardInfoFood({
           className="img-food-favorite"
           draggable="false"
         />
-
       </Link>
       <div className="info-food">
-        <h5
-          data-testid={
-            `${index}-horizontal-top-text`
-          }
-        >
+        <h5 data-testid={ `${index}-horizontal-top-text` }>
           {` ${alcoholicOrNot ? `${alcoholicOrNot}` : `${nationality} - ${category} `}`}
         </h5>
-        <Link to={ `/${type}s/${id}` }>
-          <p
-            data-testid={
-              `${index}-horizontal-name`
-            }
-          >
-            { name }
-          </p>
+        <Link to={ `/${type}s/${id}` } data-testid={ `${index}-horizontal-name` }>
+          {name}
         </Link>
 
         <div className="options-food">
@@ -50,7 +33,6 @@ function CardInfoFood({
             type={ type }
             data-testid={ `${index}-horizontal-share-btn` }
           />
-
           <Favorite
             recipe={ recipe }
             data-testid={ `${index}-horizontal-favorite-btn` }

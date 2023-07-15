@@ -11,12 +11,8 @@ export const fetchSearch = async (search, type, recipeType) => {
     id: 'lookup.php?i=',
   };
   const url = `${baseURL}${types[type]}${search}`;
-  try {
-    const result = await fetch(url).then((r) => r.json());
-    return result[recipeType];
-  } catch (err) {
-    return [];
-  }
+  const result = await fetch(url).then((r) => r.json());
+  return result[recipeType];
 };
 
 export const fetchMealOrDrink = async (recipeType) => fetchSearch('', 'name', recipeType);

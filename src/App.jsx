@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Route, Switch } from 'react-router-dom';
 import Login from './pages/Login';
 import DoneRecipes from './pages/DoneRecipes';
-import Favorites from './pages/Favorites';
+import FavoriteRecipes from './pages/FavoriteRecipes';
 import RecipeDetails from './pages/RecipeDetails/index';
 import Profile from './pages/Profile';
 import Recipes from './pages/Recipes/Recipes';
@@ -79,7 +79,7 @@ function App() {
             pageTitle="Favorite Recipes"
             pageIcon="favorite"
           >
-            <Favorites />
+            <FavoriteRecipes />
           </Layout>
         ) }
       />

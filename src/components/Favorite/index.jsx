@@ -49,6 +49,5 @@ Favorite.propTypes = {
     type: PropTypes.string.isRequired,
   }).isRequired,
   'data-testid': PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
   onChange: PropTypes.func,
 };
