@@ -1,22 +1,10 @@
 import PropTypes from 'prop-types';
 
-import { useState } from 'react';
 import Icon from '../../components/Icon';
-import favoriteIcon from '../../images/favorite.png';
-import favoriteIconFull from '../../images/favoriteFull.png';
-import blackHeartIcon from '../../images/blackHeartIcon.svg';
-import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
-import { favoriteRecipe, isRecipeFavorite } from '../../utils/localStorage';
 import Share from '../../components/Share';
+import Favorite from '../../components/Favorite';
 
 export default function RecipeInProgressHeader({ recipe }) {
-  const [isFavorite, setIsFavorite] = useState(isRecipeFavorite(recipe.id));
-
-  const handleFavorite = () => {
-    setIsFavorite((state) => !state);
-    favoriteRecipe(recipe);
-  };
-
   const { image, name, category, id, type } = recipe;
   const iconName = category.toLowerCase();
 
@@ -30,17 +18,7 @@ export default function RecipeInProgressHeader({ recipe }) {
         </div>
         <div>
           <Share id={ id } type={ type } data-testid="share-btn" />
-          <button
-            data-testid="favorite-btn"
-            onClick={ handleFavorite }
-            src={ isFavorite ? blackHeartIcon : whiteHeartIcon }
-            aria-label={ isFavorite ? 'unfavorite' : 'favorite' }
-          >
-            <img
-              src={ isFavorite ? favoriteIconFull : favoriteIcon }
-              alt="favoritar receita"
-            />
-          </button>
+          <Favorite recipe={ recipe } data-testid="favorite-btn" />
         </div>
       </div>
       <h2 data-testid="recipe-title">{name}</h2>
