@@ -44,7 +44,7 @@ function Recipes({ recipeType }) {
   };
   return (
     <div className="recipes">
-      <div className="header-filters">
+      <div className="option-filter">
         <button data-testid="All-category-filter" onClick={ () => toAllRecipes() }>
           <Icon name="drink" border />
           <span>All</span>
