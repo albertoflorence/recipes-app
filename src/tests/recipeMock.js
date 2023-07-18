@@ -20,6 +20,7 @@ export default [
     strIngredient11: 'Vegetable Stock',
     strIngredient12: 'Water',
     strIngredient13: 'Sea Salt',
+    strYoutube: 'https://www.youtube.com/watch?v=VVnZd8A84z4',
   },
   {
     idDrink: '54321',

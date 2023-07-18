@@ -5,21 +5,12 @@ import { wait } from '@testing-library/user-event/dist/utils';
 import App from '../App';
 import recipeMock from './recipeMock';
 import renderWithRouterAndRedux from './helpers/renderWithRouterAndRedux';
+import { mockFetch } from './helpers/mockFetch';
 
 const getSearchTopBtn = () => screen.getByTestId('search-top-btn');
 const getSearchInput = () => screen.getByTestId('search-input');
 const getIngredientSearchRadio = () => screen.getByTestId('ingredient-search-radio');
 const getExecSearchBtn = () => screen.getByTestId('exec-search-btn');
-
-const mockFetch = (data = recipeMock) => {
-  const globalFetch = global.fetch;
-  global.fetch = jest.fn(() => Promise.resolve({
-    json: () => Promise.resolve({ meals: data }),
-  }));
-  return () => {
-    global.fetch = globalFetch;
-  };
-};
 
 describe('Testes para o SearchBar', () => {
   it('Verifica se o ingredient search radio é selecionado', async () => {
@@ -74,7 +65,7 @@ describe('Testes para o SearchBar', () => {
 
   it('Verifica se é chamada a API quando o botão Search é clicado', async () => {
     renderWithRouterAndRedux(<App />, undefined, '/meals');
-    const restoreFetch = mockFetch();
+    mockFetch();
 
     act(() => {
       userEvent.click(getSearchTopBtn());
@@ -89,7 +80,6 @@ describe('Testes para o SearchBar', () => {
     await screen.findByText('Corba');
 
     expect(global.fetch).toHaveBeenCalled();
-    restoreFetch();
   });
 
   it('Verifica se é emitido mensagem quando o usuário tenta procurar first letter com mais de uma letra', async () => {
@@ -112,7 +102,7 @@ describe('Testes para o SearchBar', () => {
 
   it('Verifica se o usuário é redirecionado para página de detalhes se apenas uma recipe for encontrada', async () => {
     const { history } = renderWithRouterAndRedux(<App />, undefined, '/meals');
-    const restoreFetch = mockFetch(recipeMock.slice(0, 1));
+    mockFetch(recipeMock.slice(0, 1));
 
     act(() => {
       userEvent.click(getSearchTopBtn());
@@ -122,14 +112,14 @@ describe('Testes para o SearchBar', () => {
       userEvent.type(getSearchInput(), 'chicken');
       userEvent.click(getExecSearchBtn());
     });
-    await screen.findByText('Corba');
+    await screen.findAllByText('Corba');
+
     expect(history.location.pathname).toBe('/meals/12345');
-    restoreFetch();
   });
 
   it('Verifica se uma mensagem é emitida se nenhuma recipe for encontrada', async () => {
     renderWithRouterAndRedux(<App />, undefined, '/meals');
-    const restoreFetch = mockFetch([]);
+    mockFetch([]);
     global.alert = jest.fn();
 
     act(() => {
@@ -144,6 +134,5 @@ describe('Testes para o SearchBar', () => {
     });
     await screen.findByText('Corba');
     wait(() => expect(global.alert).toHaveBeenCalledWith('Sorry, we haven\'t found any recipes for these filters.'));
-    restoreFetch();
   });
 });

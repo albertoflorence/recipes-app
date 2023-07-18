@@ -5,15 +5,7 @@ import RecipeInProgress from '../pages/RecipeInProgress';
 import renderWithRouter from './helpers/renderWithRouter';
 import recipeMock from './recipeMock';
 import App from '../App';
-
-const globalFetch = global.fetch;
-const mockFetch = (type = 'meals', data = recipeMock) => {
-  global.fetch = jest.fn(() => Promise.resolve({
-    json: () => {
-      return Promise.resolve({ [type]: data });
-    },
-  }));
-};
+import { mockFetch } from './helpers/mockFetch';
 
 const savedRecipeMock = {
   alcoholicOrNot: 'Optional alcohol',
@@ -32,7 +24,6 @@ describe('<RecipeInProgress />', () => {
   });
   afterEach(() => {
     jest.useRealTimers();
-    global.fetch = globalFetch;
     localStorage.clear();
   });
 
@@ -52,7 +43,7 @@ describe('<RecipeInProgress />', () => {
 
   it('Deveria salvar a receita no localStorage e redirecionar o usuário para receitas prontas', async () => {
     const mockDrink = recipeMock[1];
-    mockFetch('drinks', recipeMock.slice().reverse());
+    mockFetch(recipeMock.slice().reverse());
     const { history } = renderWithRouter(<App />, '/drinks/54321/in-progress');
     const recipePhoto = await screen.findByTestId('recipe-photo');
     const finishButton = screen.getByTestId('finish-recipe-btn');
@@ -82,7 +73,7 @@ describe('<RecipeInProgress />', () => {
     expect(history.location.pathname).toBe('/done-recipes');
   });
   it('Deveria ser possível favoritar uma receita e salvar-la no localStorage', async () => {
-    mockFetch('drinks', recipeMock.slice().reverse());
+    mockFetch(recipeMock.slice().reverse());
     renderWithRouter(<RecipeInProgress />, '/drinks/54321/in-progress');
     const favoriteButton = await screen.findByLabelText('favorite');
     act(() => {

@@ -5,7 +5,7 @@ import Share from '../../components/Share';
 import Favorite from '../../components/Favorite';
 
 export default function RecipeInProgressHeader({ recipe }) {
-  const { image, name, category, id, type } = recipe;
+  const { image, name, category, id, type, alcoholicOrNot } = recipe;
   const iconName = category.toLowerCase();
 
   return (
@@ -14,7 +14,11 @@ export default function RecipeInProgressHeader({ recipe }) {
       <div className="progress-header-content">
         <div>
           <Icon name={ iconName } border buttonType />
-          <span data-testid="recipe-category">{category}</span>
+          <span data-testid="recipe-category">
+            {`${alcoholicOrNot}${
+              alcoholicOrNot ? ' - ' : ''
+            }${category}`}
+          </span>
         </div>
         <div>
           <Share id={ id } type={ type } data-testid="share-btn" />
@@ -33,5 +37,6 @@ RecipeInProgressHeader.propTypes = {
     category: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
+    alcoholicOrNot: PropTypes.string.isRequired,
   }).isRequired,
 };

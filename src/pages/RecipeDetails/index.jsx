@@ -5,8 +5,7 @@ import { mapPropertiesRecipe } from '../../utils/mapper';
 import './RecipeDetails.css';
 import Recommended from './Recommended';
 import { recipeStatus } from '../../utils/localStorage';
-import Share from '../../components/Share';
-import Favorite from '../../components/Favorite';
+import RecipeInProgressHeader from '../RecipeInProgress/RecipeInProgressHeader';
 
 const MAX_RECOMMENDED_RECIPES = 6;
 const recipeButtonStatus = {
@@ -38,27 +37,17 @@ function RecipeDetails() {
     getRecommendation();
   }, [location]);
   const {
-    alcoholicOrNot,
-    category,
     id,
-    image,
     ingredients,
     measures,
     instructions,
-    name,
     type,
     video,
   } = recipe;
   if (!recipe.id) return null;
   return (
     <section>
-      <header className="details-header">
-        <img data-testid="recipe-photo" src={ image } alt={ `imagem de um ${name}` } />
-        <span data-testid="recipe-category">{`${category} - ${alcoholicOrNot}`}</span>
-        <Share data-testid="share-btn" id={ id } type={ type } />
-        <Favorite data-testid="favorite-btn" recipe={ recipe } />
-        <h1 data-testid="recipe-title">{name}</h1>
-      </header>
+      <RecipeInProgressHeader recipe={ recipe } />
       <div className="details-content">
         <h3>Ingredients</h3>
         <ul>
