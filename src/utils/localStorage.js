@@ -58,6 +58,9 @@ export const getInProgressRecipes = (type) => {
 };
 
 export const recipeStatus = (id, type) => {
+  if (getDoneRecipes().some((recipe) => recipe.id === id)) {
+    return 'done';
+  }
   if (
     Object.prototype.hasOwnProperty.call(
       getInProgressRecipes(type),
@@ -66,10 +69,6 @@ export const recipeStatus = (id, type) => {
   ) {
     return 'inProgress';
   }
-  if (getDoneRecipes().some((recipe) => recipe.id === id)) {
-    return 'done';
-  }
-
   return 'notStarted';
 };
 export default getLocalStorage;
