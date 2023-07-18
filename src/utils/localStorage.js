@@ -43,4 +43,33 @@ export const saveRecipe = (recipe) => {
 
 export const getDoneRecipes = () => getLocalStorage.getItem('doneRecipes') || [];
 
+export const saveInProgressRecipe = (id, ingredients, type) => {
+  const recipes = getLocalStorage.getItem('inProgressRecipes') || {
+    meals: {},
+    drinks: {},
+  };
+  recipes[type][id] = ingredients;
+  getLocalStorage.setItem('inProgressRecipes', recipes);
+};
+
+export const getInProgressRecipes = (type) => {
+  const recipes = getLocalStorage.getItem('inProgressRecipes') || {};
+  return recipes[type] || {};
+};
+
+export const recipeStatus = (id, type) => {
+  if (
+    Object.prototype.hasOwnProperty.call(
+      getInProgressRecipes(type),
+      id,
+    )
+  ) {
+    return 'inProgress';
+  }
+  if (getDoneRecipes().some((recipe) => recipe.id === id)) {
+    return 'done';
+  }
+
+  return 'notStarted';
+};
 export default getLocalStorage;

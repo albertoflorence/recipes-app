@@ -1,0 +1,84 @@
+.details-header {
+  height: 165px;
+  position: relative;
+}
+
+.details-header > img {
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+}
+
+.details-content {
+  color: #1a1b1c;
+  margin-bottom: 68px;
+  padding: 0 12px;
+}
+
+.details-content ul, .details-content .instructions {
+  border: 0.5px solid #b1b1b1;
+  border-radius: 5px;
+  font-size: 14px;
+  list-style: inside;
+  padding: 16px 20px;
+}
+
+.details-content h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 32px;
+  padding-left: 16px;
+}
+
+.slider {
+  overflow: hidden;
+  width: 100%;
+}
+
+.slider-inner {
+  display: flex;
+  gap: 8px;
+  -ms-overflow-style: none;
+  overflow-x: scroll;
+  scrollbar-width: none;
+}
+
+.slider-inner::-webkit-scrollbar {
+  display: none;
+}
+
+.slider-item {
+  border-radius: 5px;
+  flex: 1 0 calc(50% - 7px);
+  height: 175px;
+  overflow: hidden;
+}
+
+.slider-item > div {
+  border: 0.5px solid #b1b1b1;
+  border-radius: 0 0 5px 5px;
+  font-size: 12px;
+  padding: 8px 12px;
+
+}
+
+.slider-item img {
+  height: 137px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.details-content .btn {
+  bottom: 0;
+  margin-bottom: 16px;
+  max-width: 350px;
+  position: fixed;
+}
+
+.details-action {
+  display: flex;
+  justify-content: center;
+}

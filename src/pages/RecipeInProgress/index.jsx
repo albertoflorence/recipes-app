@@ -2,41 +2,14 @@ import { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { fetchRecipeById } from '../../services';
 import './RecipeInProgress.css';
-import getLocalStorage, { saveRecipe } from '../../utils/localStorage';
+import {
+  getInProgressRecipes,
+  saveInProgressRecipe,
+  saveRecipe,
+} from '../../utils/localStorage';
 
 import RecipeInProgressHeader from './RecipeInProgressHeader';
-
-const getIngredients = (recipe) => Object.entries(recipe)
-  .filter(([key, value]) => key.includes('Ingredient') && value)
-  .map(([, value]) => value);
-
-const mapProperties = (recipe) => {
-  const {
-    strMealThumb,
-    strDrinkThumb,
-    strMeal,
-    strDrink,
-    strCategory,
-    strInstructions,
-    idMeal,
-    idDrink,
-    strArea,
-    strAlcoholic,
-    strTags,
-  } = recipe;
-  return {
-    id: idMeal || idDrink,
-    image: strMealThumb || strDrinkThumb,
-    name: strMeal || strDrink,
-    category: strCategory,
-    instructions: strInstructions,
-    ingredients: getIngredients(recipe),
-    type: strMeal ? 'meals' : 'drinks',
-    nationality: strArea || '',
-    alcoholicOrNot: strAlcoholic || '',
-    tags: strTags ? strTags.split(',') : [],
-  };
-};
+import { mapPropertiesRecipe } from '../../utils/mapper';
 
 export default function RecipeInProgress() {
   const location = useLocation();
@@ -47,16 +20,17 @@ export default function RecipeInProgress() {
     const [, recipeType, recipeId] = location.pathname.split('/');
     const fetchRecipe = async () => {
       const result = await fetchRecipeById(recipeId, recipeType);
-      setRecipe(mapProperties(result));
+      setRecipe(mapPropertiesRecipe(result));
     };
     fetchRecipe();
-    const recipeIngredients = getLocalStorage.getItem('inProgressRecipes') || {};
+    const recipeIngredients = getInProgressRecipes(recipeType);
     setIngredientsDone(recipeIngredients[recipeId] || []);
   }, [location]);
 
   useEffect(() => {
-    const { id } = recipe;
-    getLocalStorage.setItem('inProgressRecipes', { [id]: ingredientsDone });
+    if (!recipe.id) return;
+    const { id, type } = recipe;
+    saveInProgressRecipe(id, ingredientsDone, type);
   }, [ingredientsDone, recipe]);
 
   const handleIngredientChange = (event, ingredientIndex) => {
@@ -73,7 +47,7 @@ export default function RecipeInProgress() {
     history.push('/done-recipes');
   };
 
-  if (!recipe.id) return <div>Loading...</div>;
+  if (!recipe.id) return null;
 
   const { instructions, ingredients } = recipe;
   const isIngredientsAllDone = ingredientsDone.length === ingredients.length
