@@ -68,7 +68,9 @@ function DoneRecipes() {
                 </div>
                 <span className="done-card-time">
                   {'Done in '}
-                  <span data-testid={ `${index}-horizontal-done-date` }>{doneDate}</span>
+                  <span data-testid={ `${index}-horizontal-done-date` }>
+                    {new Date(doneDate).toLocaleDateString()}
+                  </span>
                 </span>
                 <div className="done-card-tags">
                   {tags.map((tag) => (

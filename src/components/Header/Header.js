@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import Logo from '../Logo';
 import './Header.css';
@@ -10,6 +10,10 @@ import Icon from '../Icon';
 
 function Header({ search = false, pageTitle, pageIcon }) {
   const [searchBar, setSearchBar] = useState(false);
+  const { pathname } = useLocation();
+  useEffect(() => {
+    setSearchBar(false);
+  }, [pathname]);
   return (
     <header>
       <nav className="header-top">

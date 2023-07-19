@@ -16,6 +16,7 @@ function Recipes({ recipeType }) {
   const categories = useSelector((state) => state
     .recipe.categories.slice(0, MAX_CATEGORIES));
   const [categoryState, setCategoryState] = useState('all');
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -28,9 +29,11 @@ function Recipes({ recipeType }) {
   }, [recipeType, dispatch]);
 
   const toAllRecipes = async () => {
+    setLoading(true);
     const menuData = await fetchMealOrDrink(recipeType);
     dispatch(actionSaveRecipes(menuData));
     setCategoryState('all');
+    setLoading(false);
   };
 
   const handleCategoryClick = async (type, category) => {
@@ -60,7 +63,7 @@ function Recipes({ recipeType }) {
           </button>
         ))}
       </div>
-      <div className="recipe-grid">
+      <div className={ `recipe-grid${loading ? ' grid-loading' : ''}` }>
         {recipes.map(
           (
             { idDrink, strDrink, strDrinkThumb, idMeal, strMeal, strMealThumb },

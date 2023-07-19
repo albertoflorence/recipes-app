@@ -14,6 +14,8 @@ const recipeButtonStatus = {
   notStarted: 'Start Recipe',
 };
 
+const handleYouTubeLink = (link) => link.replace('watch?v=', 'embed/');
+
 function RecipeDetails() {
   const [recipe, setRecipe] = useState({
     ingredients: [],
@@ -68,7 +70,7 @@ function RecipeDetails() {
             data-testid="video"
             width="100%"
             height="275"
-            src={ video }
+            src={ handleYouTubeLink(video) }
           />
         )}
         <h3>Recommended</h3>
