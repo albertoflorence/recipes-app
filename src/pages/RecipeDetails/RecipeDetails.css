@@ -57,9 +57,11 @@
   overflow: hidden;
 }
 
-.slider-item > div {
+.slider-item > a {
   border: 0.5px solid #b1b1b1;
   border-radius: 0 0 5px 5px;
+  color: #1a1b1c;
+  display: block;
   font-size: 12px;
   padding: 8px 12px;
 

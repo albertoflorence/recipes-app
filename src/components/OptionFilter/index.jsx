@@ -1,6 +1,7 @@
 import './OptionFilter.css';
 
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import Icon from '../Icon';
 
 const filters = [
@@ -10,10 +11,20 @@ const filters = [
 ];
 
 function OptionFilter({ onChange }) {
+  const [currentFilter, setCurrentFilter] = useState();
+  const handleClick = (type) => {
+    setCurrentFilter(type);
+    onChange(type);
+  };
   return (
     <div className="option-filter">
       {filters.map(({ name, icon, testid, type }) => (
-        <button key={ name } data-testid={ testid } onClick={ () => onChange(type) }>
+        <button
+          key={ name }
+          data-testid={ testid }
+          onClick={ () => handleClick(type) }
+          className={ currentFilter === type ? 'active' : '' }
+        >
           <Icon name={ icon } large border />
           <span>{name}</span>
         </button>

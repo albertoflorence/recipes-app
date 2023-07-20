@@ -47,22 +47,29 @@ function Recipes({ recipeType }) {
   };
   return (
     <div className="recipes">
-      <div className="option-filter">
-        <button data-testid="All-category-filter" onClick={ () => toAllRecipes() }>
-          <Icon name="drink" border />
-          <span>All</span>
-        </button>
-        {categories.map(({ strCategory }) => (
+      {categories.length > 0 && (
+        <div className="option-filter">
           <button
-            key={ strCategory }
-            data-testid={ `${strCategory}-category-filter` }
-            onClick={ () => handleCategoryClick(recipeType, strCategory) }
+            data-testid="All-category-filter"
+            onClick={ () => toAllRecipes() }
+            className={ categoryState === 'all' ? 'active' : '' }
           >
-            <Icon name={ strCategory } border />
-            <span>{strCategory}</span>
+            <Icon name="drink" border />
+            <span>All</span>
           </button>
-        ))}
-      </div>
+          {categories.map(({ strCategory }) => (
+            <button
+              key={ strCategory }
+              data-testid={ `${strCategory}-category-filter` }
+              onClick={ () => handleCategoryClick(recipeType, strCategory) }
+              className={ categoryState === strCategory ? 'active' : '' }
+            >
+              <Icon name={ strCategory } border />
+              <span>{strCategory}</span>
+            </button>
+          ))}
+        </div>
+      )}
       <div className={ `recipe-grid${loading ? ' grid-loading' : ''}` }>
         {recipes.map(
           (

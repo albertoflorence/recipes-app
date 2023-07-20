@@ -6,6 +6,7 @@
   margin: 0 auto 16px;
   max-width: 330px;
   text-align: center;
+
 }
 
 .option-filter > button {
@@ -18,4 +19,9 @@
 
 .option-filter span {
   width: 46px;
+}
+
+.option-filter .active > * {
+  filter: brightness(1.15);
+  transition: filter 0.2s ease-out;
 }

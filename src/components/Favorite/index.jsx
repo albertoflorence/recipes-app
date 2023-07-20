@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import favoriteIcon from '../../images/favorite.png';
 import favoriteIconFull from '../../images/favoriteFull.png';
 import blackHeartIcon from '../../images/blackHeartIcon.svg';
@@ -24,6 +24,10 @@ export default function Favorite({
       onChange();
     }
   };
+
+  useEffect(() => {
+    setIsFavorite(isRecipeFavorite(recipe.id));
+  }, [recipe.id]);
 
   return (
     <button
