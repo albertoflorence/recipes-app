@@ -18,6 +18,10 @@
   padding: 0 12px;
 }
 
+.details-content p {
+  white-space: break-spaces;
+}
+
 .details-content ul, .details-content .instructions {
   border: 0.5px solid #b1b1b1;
   border-radius: 5px;

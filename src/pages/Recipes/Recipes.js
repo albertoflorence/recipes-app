@@ -16,27 +16,28 @@ function Recipes({ recipeType }) {
   const categories = useSelector((state) => state
     .recipe.categories.slice(0, MAX_CATEGORIES));
   const [categoryState, setCategoryState] = useState('all');
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchRecipes = async () => {
+      setLoading(true);
       const menuData = await fetchMealOrDrink(recipeType);
       const categoryData = await fetchCategories(recipeType);
       dispatch(actionSaveRecipes(menuData));
       dispatch(actionSaveCategories(categoryData));
+      setLoading(false);
     };
     fetchRecipes();
   }, [recipeType, dispatch]);
 
   const toAllRecipes = async () => {
-    setLoading(true);
     const menuData = await fetchMealOrDrink(recipeType);
     dispatch(actionSaveRecipes(menuData));
     setCategoryState('all');
-    setLoading(false);
   };
 
   const handleCategoryClick = async (type, category) => {
+    setLoading(true);
     if (categoryState !== category) {
       const data = await fetchFilterCategory(type, category);
       dispatch(actionSaveRecipes(data));
@@ -44,6 +45,7 @@ function Recipes({ recipeType }) {
     } else {
       await toAllRecipes();
     }
+    setLoading(false);
   };
   return (
     <div className="recipes">

@@ -22,6 +22,6 @@
 }
 
 .option-filter .active > * {
-  filter: brightness(1.15);
+  filter: brightness(0.7);
   transition: filter 0.2s ease-out;
 }

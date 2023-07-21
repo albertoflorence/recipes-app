@@ -62,6 +62,10 @@
   text-transform: uppercase;
 }
 
+.progress-content p {
+  white-space: break-spaces;
+}
+
 .ingredient-input {
   accent-color: #fcc436;
   appearance: none;
