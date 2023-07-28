@@ -9,7 +9,7 @@
 }
 
 .progress-header > img {
-  filter: brightness(0.6);
+  filter: brightness(0.5);
   height: 165px;
   object-fit: cover;
   position: absolute;
@@ -116,4 +116,14 @@
   border: 0.5px solid #b1b1b1;
   border-radius: 5px;
   padding: 20px 16px;
+}
+
+@media screen and ( min-width : 730px ) {
+
+  .progress-header {
+    border: 2px solid #92929277;
+    border-radius: 10px;
+    margin-top: 10px;
+    overflow: hidden;
+  }
 }

@@ -3,20 +3,6 @@
   max-width: 720px;
 }
 
-.details-header {
-  height: 165px;
-  position: relative;
-}
-
-.details-header > img {
-  height: 100%;
-  object-fit: cover;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  z-index: -1;
-}
-
 .details-content {
   color: #1a1b1c;
   margin-bottom: 68px;
