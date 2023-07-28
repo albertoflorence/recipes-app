@@ -53,7 +53,7 @@ export default function RecipeInProgress() {
   const isIngredientsAllDone = ingredientsDone.length === ingredients.length
     && ingredientsDone.every((ingredient) => ingredient);
   return (
-    <div>
+    <div className="progress-wrapper">
       <RecipeInProgressHeader recipe={ recipe } />
       <div className="progress-content">
         <div className="progress-ingredients">

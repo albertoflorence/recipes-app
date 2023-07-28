@@ -1,3 +1,8 @@
+.progress-wrapper {
+  margin: 0 auto;
+  max-width: 720px;
+}
+
 .progress-header {
   height: 165px;
   position: relative;

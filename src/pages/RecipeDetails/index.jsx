@@ -48,7 +48,7 @@ function RecipeDetails() {
   } = recipe;
   if (!recipe.id) return null;
   return (
-    <section>
+    <section className="details">
       <RecipeInProgressHeader recipe={ recipe } />
       <div className="details-content">
         <h3>Ingredients</h3>
